@@ -27,8 +27,9 @@ const getProducts: ProductsHandlers['getProducts'] = async ({
   if (category && Number.isInteger(Number(category)))
     url.searchParams.set('categories:in', category)
 
-  if (brand && Number.isInteger(Number(brand)))
-    url.searchParams.set('brand_id', brand)
+  // if (brand && Number.isInteger(Number(brand)))
+  //   url.searchParams.set('brand_id', brand)
+  url.searchParams.set('brand_id', String(process.env.VENDOR_ID ?? 'xxdd')) //xxdd
 
   if (sort) {
     const [_sort, direction] = sort.split('-')
@@ -72,8 +73,11 @@ const getProducts: ProductsHandlers['getProducts'] = async ({
     const product = productsById[id]
     if (product) products.push(product)
   })
-
-  res.status(200).json({ data: { products, found } })
+  const myBrandProducts = products.filter((product) => {
+    console.log(product.brand)
+    return String(product.brand) === process.env.VENDOR_ID
+  })
+  res.status(200).json({ data: { products: myBrandProducts, found } })
 }
 
 export default getProducts
