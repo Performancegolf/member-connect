@@ -224,76 +224,76 @@ export default function Search({
                 </button>
               </span>
             </div>
-            <div
-              className={`origin-top-left absolute lg:relative left-0 mt-2 w-full rounded-md shadow-lg lg:shadow-none z-10 mb-10 lg:block ${
-                activeFilter !== 'brands' || toggleFilter !== true
-                  ? 'hidden'
-                  : ''
-              }`}
-            >
-              <div className="rounded-sm bg-white shadow-xs lg:bg-none lg:shadow-none">
-                <div
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="options-menu"
-                >
-                  <ul>
-                    <li
-                      className={cn(
-                        'block text-sm leading-5 text-gray-700 lg:text-base lg:no-underline lg:font-bold lg:tracking-wide hover:bg-gray-100 lg:hover:bg-transparent hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900',
-                        {
-                          underline: !activeBrand?.name,
-                        }
-                      )}
-                    >
-                      <Link
-                        href={{
-                          pathname: getDesignerPath('', category),
-                          query,
-                        }}
-                      >
-                        <a
-                          onClick={(e) => handleClick(e, 'brands')}
-                          className={
-                            'block lg:inline-block px-4 py-2 lg:p-0 lg:my-2 lg:mx-4'
-                          }
-                        >
-                          All Designers
-                        </a>
-                      </Link>
-                    </li>
-                    {brands.flatMap(({ node }) => (
-                      <li
-                        key={node.path}
-                        className={cn(
-                          'block text-sm leading-5 text-gray-700 hover:bg-gray-100 lg:hover:bg-transparent hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900',
-                          {
-                            // @ts-ignore Shopify - Fix this types
-                            underline: activeBrand?.entityId === node.entityId,
-                          }
-                        )}
-                      >
-                        <Link
-                          href={{
-                            pathname: getDesignerPath(node.path, category),
-                            query,
-                          }}
-                        >
-                          <a
-                            onClick={(e) => handleClick(e, 'brands')}
-                            className={
-                              'block lg:inline-block px-4 py-2 lg:p-0 lg:my-2 lg:mx-4'
-                            }
-                          >
-                            {node.name}
-                          </a>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
+            {/*<div*/}
+            {/*  className={`origin-top-left absolute lg:relative left-0 mt-2 w-full rounded-md shadow-lg lg:shadow-none z-10 mb-10 lg:block ${*/}
+            {/*    activeFilter !== 'brands' || toggleFilter !== true*/}
+            {/*      ? 'hidden'*/}
+            {/*      : ''*/}
+            {/*  }`}*/}
+            {/*>*/}
+            {/*  <div className="rounded-sm bg-white shadow-xs lg:bg-none lg:shadow-none">*/}
+            {/*    <div*/}
+            {/*      role="menu"*/}
+            {/*      aria-orientation="vertical"*/}
+            {/*      aria-labelledby="options-menu"*/}
+            {/*    >*/}
+            {/*      <ul>*/}
+            {/*        <li*/}
+            {/*          className={cn(*/}
+            {/*            'block text-sm leading-5 text-gray-700 lg:text-base lg:no-underline lg:font-bold lg:tracking-wide hover:bg-gray-100 lg:hover:bg-transparent hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900',*/}
+            {/*            {*/}
+            {/*              underline: !activeBrand?.name,*/}
+            {/*            }*/}
+            {/*          )}*/}
+            {/*        >*/}
+            {/*          <Link*/}
+            {/*            href={{*/}
+            {/*              pathname: getDesignerPath('', category),*/}
+            {/*              query,*/}
+            {/*            }}*/}
+            {/*          >*/}
+            {/*            <a*/}
+            {/*              onClick={(e) => handleClick(e, 'brands')}*/}
+            {/*              className={*/}
+            {/*                'block lg:inline-block px-4 py-2 lg:p-0 lg:my-2 lg:mx-4'*/}
+            {/*              }*/}
+            {/*            >*/}
+            {/*              All Designers*/}
+            {/*            </a>*/}
+            {/*          </Link>*/}
+            {/*        </li>*/}
+            {/*        {brands.flatMap(({ node }) => (*/}
+            {/*          <li*/}
+            {/*            key={node.path}*/}
+            {/*            className={cn(*/}
+            {/*              'block text-sm leading-5 text-gray-700 hover:bg-gray-100 lg:hover:bg-transparent hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900',*/}
+            {/*              {*/}
+            {/*                // @ts-ignore Shopify - Fix this types*/}
+            {/*                underline: activeBrand?.entityId === node.entityId,*/}
+            {/*              }*/}
+            {/*            )}*/}
+            {/*          >*/}
+            {/*            <Link*/}
+            {/*              href={{*/}
+            {/*                pathname: getDesignerPath(node.path, category),*/}
+            {/*                query,*/}
+            {/*              }}*/}
+            {/*            >*/}
+            {/*              <a*/}
+            {/*                onClick={(e) => handleClick(e, 'brands')}*/}
+            {/*                className={*/}
+            {/*                  'block lg:inline-block px-4 py-2 lg:p-0 lg:my-2 lg:mx-4'*/}
+            {/*                }*/}
+            {/*              >*/}
+            {/*                {node.name}*/}
+            {/*              </a>*/}
+            {/*            </Link>*/}
+            {/*          </li>*/}
+            {/*        ))}*/}
+            {/*      </ul>*/}
+            {/*    </div>*/}
+            {/*  </div>*/}
+            {/*</div>*/}
           </div>
         </div>
         {/* Products */}
@@ -321,16 +321,29 @@ export default function Search({
                       hidden: data.found,
                     })}
                   >
-                    {q ? (
-                      <>
-                        There are no products that match "<strong>{q}</strong>"
-                      </>
-                    ) : (
-                      <>
-                        There are no products that match the selected category &
-                        designer
-                      </>
-                    )}
+                    <div className="relative">
+                      {q ? (
+                        <>
+                          <h2 className="text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                            Nothing Found
+                          </h2>
+                          <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
+                            There are no products that match "
+                            <strong>{q}</strong>"
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <h2 className="text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                            Nothing Found
+                          </h2>
+                          <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
+                            There are no products that match the selected
+                            category
+                          </p>
+                        </>
+                      )}
+                    </div>
                   </span>
                 </>
               ) : q ? (

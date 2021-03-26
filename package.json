@@ -9,7 +9,12 @@
     "prettier-fix": "prettier --write .",
     "find:unused": "next-unused",
     "generate": "graphql-codegen",
-    "generate:definitions": "node framework/bigcommerce/scripts/generate-definitions.js"
+    "generate:definitions": "node framework/bigcommerce/scripts/generate-definitions.js",
+    "deploy": "gcloud config set project slgolfconnect && npm run submit && npm run cloudrun",
+    "deploys": "gcloud config set project slgolfconnect && npm run submit && npm run cloudrun-staging",
+    "submit": "gcloud builds submit --tag gcr.io/slgolfconnect/ecommerce",
+    "cloudrun": "gcloud run deploy ecommerce --image gcr.io/slgolfconnect/ecommerce --platform managed --region us-central1",
+    "cloudrun-staging": "gcloud run deploy ecommerce-staging --image gcr.io/slgolfconnect/ecommerce --platform managed --region us-central1"
   },
   "sideEffects": false,
   "license": "MIT",
@@ -32,7 +37,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.random": "^3.2.0",
     "lodash.throttle": "^4.1.1",
-    "next": "^10.0.9-canary.5",
+    "next": "10.0.7",
     "next-seo": "^4.11.0",
     "next-themes": "^0.0.4",
     "postcss": "^8.2.6",
