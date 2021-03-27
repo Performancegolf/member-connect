@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8080",
     "analyze": "BUNDLE_ANALYZE=both yarn build",
     "prettier-fix": "prettier --write .",
     "find:unused": "next-unused",
@@ -14,6 +14,8 @@
     "deploys": "gcloud config set project slgolfconnect && npm run submit && npm run cloudrun-staging",
     "submit": "gcloud builds submit --tag gcr.io/slgolfconnect/ecommerce",
     "cloudrun": "gcloud run deploy ecommerce --image gcr.io/slgolfconnect/ecommerce --platform managed --region us-central1",
+    "cloudrun:chalambar": "gcloud run deploy chalambar --set-env-vars VENDOR_ID=40 --memory=512Mi --image gcr.io/slgolfconnect/ecommerce --platform managed --region us-central1",
+    "cloudrun:stawell": "gcloud run deploy stawell --set-env-vars VENDOR_ID=39 --memory=512Mi --image gcr.io/slgolfconnect/ecommerce --platform managed --region us-central1",
     "cloudrun-staging": "gcloud run deploy ecommerce-staging --image gcr.io/slgolfconnect/ecommerce --platform managed --region us-central1"
   },
   "sideEffects": false,
